@@ -34,6 +34,9 @@ python deepseek-ocr-client.py [options] <image_or_pdf>
 | `--page-range FROM-TO` | `-r` | Range of PDF pages to process (e.g. `1-5`) | All pages |
 | `--prompt TEXT` | `-p` | Prompt sent to the model | `Convert the document to markdown.` |
 | `--output FILE` | `-o` | Output file path | `<input>.md` |
+| `--recursive` | | Enable recursive scan: detect image regions via grounding and re-scan them | Off |
+| `--image-prompt TEXT` | | Prompt used for recursive image region scans | `Parse the figure.` |
+| `--keep-temp` | | Keep temporary cropped images in a `./temp` folder | Off |
 | `--help` | `-h` | Show help message and exit | |
 
 ### Examples
@@ -73,4 +76,19 @@ See [DeepSeek-OCR on github](https://github.com/deepseek-ai/DeepSeek-OCR)
 # general: <image>\nDescribe this image in detail.
 # rec: <image>\nLocate <|ref|>xxxx<|/ref|> in the image.
 # '先天下之忧而忧'
+```
+
+
+### Example 
+Scanning a page of a PDF document with text and images and converting in markdown with a description of the images in the text can be done with:
+
+```
+python deepseek-ocr-client.py \
+   -r <page range> \
+   --recursive \
+   --keep-temp \
+   -p "<|grounding|>Convert the document to markdown." \
+   --image-prompt "Describe this image in detail." \
+   -o <output file> \
+   <input file>
 ```
