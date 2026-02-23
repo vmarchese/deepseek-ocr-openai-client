@@ -17,6 +17,33 @@ export OPENAI_API_KEY="your-key"
 
 ## Installation
 
+### Option A: Using uv (recommended)
+
+1. Install uv (if not already installed):
+
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+2. Install dependencies and create the virtual environment:
+
+```bash
+uv sync
+```
+
+> `uv sync` automatically creates a `.venv/` in the project directory and installs all dependencies. To run commands, either activate the venv with `source .venv/bin/activate` or use `uv run python` directly.
+
+### Option B: Using pip
+
+1. Create and activate a virtual environment:
+
+```bash
+python3.14 -m venv .venv
+source .venv/bin/activate
+```
+
+2. Install the project in editable mode:
+
 ```bash
 pip install -e .
 ```
